@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mailmasters of the Southwest</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="./css/styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app" class="d-flex flex-column min-vh-100">
+      <nav-bar></nav-bar>
+      <main class="flex-grow-1">
+        <div class="container py-4">
+          <router-view></router-view>
+        </div>
+      </main>
+      <site-footer></site-footer>
+    </div>
+
+    <!-- Templates -->
+    <script type="text/x-template" id="tmpl-nav">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <router-link class="navbar-brand" to="/">{{ pages.brand?.name || 'Mail Masters SW' }}</router-link>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="nav">
+            <ul class="navbar-nav ms-auto">
+              <li v-for="(link,i) in pages.nav || []" :key="i" class="nav-item">
+                <router-link class="nav-link" :to="toRoute(link.to)">{{ link.label }}</router-link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </script>
+
+    <script type="text/x-template" id="tmpl-footer">
+      <footer class="border-top py-4 mt-5">
+        <div class="container d-flex justify-content-between align-items-center">
+          <small>&copy; <span>{{ year }}</span> {{ pages.brand?.legalName || 'Mail Masters South West' }}</small>
+          <small><router-link to="/contact" class="text-decoration-none">Contact</router-link></small>
+        </div>
+      </footer>
+    </script>
+
+    <script type="text/x-template" id="tmpl-home">
+      <section class="py-4">
+        <div class="text-center py-4">
+          <img v-if="pages.brand?.logo" :src="asset(pages.brand.logo)" alt="Logo" class="mb-3" style="max-height:72px">
+          <h1 class="display-5 fw-bold">{{ hero.title }}</h1>
+          <p class="lead">{{ hero.subtitle }}</p>
+          <div class="d-flex justify-content-center gap-2">
+            <router-link :to="toRoute(hero.ctaPrimary?.to || '/services')" class="btn btn-primary btn-lg">
+              {{ hero.ctaPrimary?.label || 'View Services' }}
+            </router-link>
+            <router-link :to="toRoute(hero.ctaSecondary?.to || '/contact')" class="btn btn-outline-secondary btn-lg">
+              {{ hero.ctaSecondary?.label || 'Contact Us' }}
+            </router-link>
+          </div>
+        </div>
+
+        <div class="row g-4 mt-2">
+          <div v-for="(h, i) in highlights" :key="i" class="col-md-4">
+            <div class="border rounded p-3 h-100 text-center">
+              <div class="d-flex flex-column align-items-center gap-2">
+                <div class="card-icon" v-if="h.icon"><i :class="h.icon" aria-hidden="true"></i></div>
+                <div>
+                  <h3 class="h5 mb-1">{{ h.title }}</h3>
+                  <p class="mb-0 text-muted" v-if="h.desc">{{ h.desc }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-body-tertiary rounded mt-5 p-4 text-center">
+          <h2 class="h4 mb-2">Ready to streamline your mail?</h2>
+          <p class="text-muted mb-3">Talk to us about your next campaign or recurring business mail.</p>
+          <router-link to="/contact" class="btn btn-primary">Contact Us</router-link>
+        </div>
+      </section>
+    </script>
+
+    <script type="text/x-template" id="tmpl-services">
+      <section>
+        <h1>Services</h1>
+        <p class="text-muted">Practical solutions for organizations that mail at volume.</p>
+        <div class="row g-4 mt-1">
+          <div v-for="(s, i) in items" :key="i" class="col-md-6">
+            <div class="card h-100 shadow-sm">
+              <img v-if="s.src" class="card-img-top" :src="asset(s.src)" :alt="s.title" style="object-fit:cover; max-height: 280px;" @error="tryAlt($event, s.src)">
+              <div class="card-body">
+                <h5 class="mb-1">{{ s.title }}</h5>
+                <p class="mb-0" v-if="s.copy">{{ s.copy }}</p>
+              </div>
+            </div>
+          </div>
+          <div v-if="!items.length" class="col-12">
+            <div class="alert alert-warning">No services found.</div>
+          </div>
+        </div>
+      </section>
+    </script>
+
+    <script type="text/x-template" id="tmpl-about">
+      <section>
+        <h1>About {{ pages.brand?.name }}</h1>
+        <p class="text-muted" v-if="about.tagline">{{ about.tagline }}</p>
+        <div class="row g-4">
+          <div class="col-12">
+            <p v-for="(p,i) in about.body || []" :key="'b'+i">{{ p }}</p>
+            <div class="border rounded p-3 mt-3" v-if="(about.bullets||[]).length">
+              <h2 class="h5 mb-2">What we do</h2>
+              <ul class="mb-0">
+                <li v-for="(w,i) in about.bullets" :key="'w'+i">{{ w }}</li>
+              </ul>
+            </div>
+            <div class="border rounded p-3 mt-3" v-if="(about.glance||[]).length">
+              <h2 class="h6 text-uppercase text-muted">At a Glance</h2>
+              <ul class="list-unstyled small mb-0">
+                <li v-for="(g,i) in about.glance" :key="'g'+i">
+                  <strong>{{ g.k }}:</strong> {{ g.v }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </script>
+
+    <script type="text/x-template" id="tmpl-contact">
+      <section>
+        <h1>Contact</h1>
+        <div class="row g-4 mt-1">
+          <div class="col-lg-7">
+            <p class="text-muted">Send us a message and we’ll get back shortly.</p>
+            <form class="mt-3" onsubmit="return false;" @submit="sendEmail">
+              <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input name="name" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input name="email" type="email" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Message</label>
+                <textarea name="message" rows="5" class="form-control" required></textarea>
+              </div>
+              <button class="btn btn-primary" type="submit">Send (static demo)</button>
+            </form>
+          </div>
+          <div class="col-lg-5">
+            <div class="border rounded p-3 h-100">
+              <h2 class="h5 mb-3">Details</h2>
+              <p class="mb-1" v-if="contact.address"><strong>Address:</strong> {{ contact.address }}</p>
+              <p class="mb-1" v-if="contact.phone"><strong>Phone:</strong> {{ contact.phone }}</p>
+              <p class="mb-3" v-if="contact.email"><strong>Email:</strong> <a :href="'mailto:'+contact.email">{{ contact.email }}</a></p>
+              <h3 class="h6" v-if="(hours||[]).length">Hours</h3>
+              <ul class="list-unstyled small mb-0">
+                <li v-for="(row,i) in (hours || [])" :key="'h'+i">
+                  <strong>{{ row.d }}:</strong> {{ row.h }}
+                </li>
+              </ul>
+              <div class="mt-3" v-if="contact.mapUrl">
+                <a class="btn btn-outline-secondary btn-sm" :href="contact.mapUrl" target="_blank" rel="noopener">Open in Maps</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </script>
+
+    <script type="text/x-template" id="tmpl-notfound">
+      <div class="text-center py-5">
+        <h1 class="display-6">Page not found</h1>
+        <p class="text-muted">The page you are looking for doesn’t exist.</p>
+        <router-link to="/" class="btn btn-outline-primary">Go Home</router-link>
+      </div>
+    </script>
+
+    <!-- Vue + Router + Bootstrap JS -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <script src="https://unpkg.com/vue-router@4/dist/vue-router.global.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Inject pages data (global) -->
+    <script src="./js/pagesData.js"></script>
+
+    <!-- App bootstrap -->
+    <script>
+    (function(){
+      function toRoute(raw){
+        if(!raw) return '/';
+        if(/^#\//.test(raw)) return raw.replace(/^#/, '');
+        if(/^\//.test(raw)) return raw;
+        if(/about\.html$/i.test(raw)) return '/about';
+        if(/services\.html$/i.test(raw)) return '/services';
+        if(/contact\.html$/i.test(raw)) return '/contact';
+        return raw.startsWith('/') ? raw : ('/' + raw.replace(/^\#?\/?/, ''));
+      }
+      function asset(p){
+        if(!p) return '';
+        if(/^https?:\/\//.test(p)) return p;
+        // normalize leading ./ or /
+        let clean = (''+p).replace(/^[./]+/, '');
+        // Handle absolute nuxt-style '/images/...'
+        if (clean.startsWith('images/')) return './assets/public/public/' + clean;
+        // If already 'public/...'
+        if (clean.startsWith('public/')) return './assets/' + clean;
+        // If already 'assets/...'
+        if (clean.startsWith('assets/')) return './' + clean;
+        // Fallback: try mapping into public/public
+        return './assets/public/public/' + clean;
+      }
+
+      const NavBar = { template: document.getElementById('tmpl-nav').innerHTML, data: ()=>({ pages: window.pages }), methods:{ toRoute } };
+      const SiteFooter = { template: document.getElementById('tmpl-footer').innerHTML, data: ()=>({ pages: window.pages, year: new Date().getFullYear() }) };
+
+      const Home = { template: document.getElementById('tmpl-home').innerHTML,
+        data(){ return { pages: window.pages }; },
+        computed:{
+          hero(){ return (this.pages.home && this.pages.home.hero) || {}; },
+          highlights(){ return (this.pages.home && Array.isArray(this.pages.home.highlights)) ? this.pages.home.highlights : []; }
+        },
+        methods:{ toRoute, asset }
+      };
+
+      const Services = { template: document.getElementById('tmpl-services').innerHTML,
+        data(){ return { pages: window.pages }; },
+        computed:{ items(){ return (this.pages.services && Array.isArray(this.pages.services.items)) ? this.pages.services.items : []; } },
+        methods:{ asset }
+      };
+
+      const About = { template: document.getElementById('tmpl-about').innerHTML,
+        data(){ return { pages: window.pages }; },
+        computed:{ about(){ return this.pages.about || {}; } }
+      };
+
+      const Contact = { 
+  template: document.getElementById('tmpl-contact').innerHTML,
+  data(){ return { pages: window.pages }; },
+  computed:{ 
+    contact(){ return this.pages.contact || {}; }, 
+    hours(){ return this.pages.hours || []; } 
+  },
+  methods:{
+    sendEmail(e){
+      e && e.preventDefault && e.preventDefault();
+      const form = e.target;
+      const name = form.querySelector('[name="name"]').value || '';
+      const email = form.querySelector('[name="email"]').value || '';
+      const message = form.querySelector('[name="message"]').value || '';
+      const to = (this.contact && this.contact.email) || 'info@mailmasterssw.com';
+      const subject = encodeURIComponent('Website inquiry');
+      const body = encodeURIComponent(`Name: ${name}
+Email: ${email}
+
+${message}`);
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    },
+    tryAlt(ev, src){
+      const el = ev.target;
+      if (el && !el.dataset.altTried){
+        el.dataset.altTried = '1';
+        let p = (''+src).replace(/^[./]+/, '').replace(/^images\//,'assets/public/images/');
+        if (!p.startsWith('assets/')) p = 'assets/public/images/' + p;
+        el.src = './' + p.replace('assets/public/images/', 'assets/public/public/images/');
+      }
+    }
+  }
+};
+
+      const NotFound = { template: document.getElementById('tmpl-notfound').innerHTML };
+
+      const router = VueRouter.createRouter({
+        history: VueRouter.createWebHashHistory(),
+        routes: [
+          { path: '/', component: Home },
+          { path: '/about', component: About },
+          { path: '/services', component: Services },
+          { path: '/contact', component: Contact },
+          { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound }
+        ]
+      });
+
+      const app = Vue.createApp({});
+      app.component('nav-bar', NavBar);
+      app.component('site-footer', SiteFooter);
+      app.use(router);
+      app.mount('#app');
+    })();
+    </script>
+  </body>
+</html>
