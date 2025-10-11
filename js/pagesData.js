@@ -48,7 +48,7 @@ window.pages = {
       "Business mail preparation",
       "Addressing list management",
       "High-speed printing/mailing processes",
-      "one stop for all printing and mailing needs"
+      "One-stop for all printing and mailing needs"
     ],
     "glance": [
       {
@@ -75,7 +75,7 @@ window.pages = {
       {
         "src": "/images/postage-system.jpg",
         "title": "Business Mailing",
-        "copy": "Let us handle all of your mail from posting to delivery at usps."
+        "copy": "Let us handle all of your mail from posting to delivery at USPS."
       },
       /*{
         "src": "/images/sorter-line.jpg",
@@ -90,7 +90,7 @@ window.pages = {
       {
         "src": "/images/tabletop-inserter.jpg",
         "title": "Mail Inserting",
-        "copy": "Automated inserting collates, matches, seals—accurate, secure, ready for postage."
+        "copy": "Automated inserting, collates, matches, seals—accurate, secure, ready for postage."
       }
     ]
   },
