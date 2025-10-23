@@ -20,6 +20,8 @@
     </div>
 
     <!-- Templates -->
+    
+    
     <script type="text/x-template" id="tmpl-nav">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -39,16 +41,70 @@
     </script>
 
     <script type="text/x-template" id="tmpl-footer">
-      <footer class="border-top py-4 mt-5">
-        <div class="container d-flex justify-content-between align-items-center">
-          <small>&copy; <span>{{ year }}</span> {{ pages.brand?.legalName || 'Mail Masters South West' }}</small>
-          <small><router-link to="/contact" class="text-decoration-none">Contact</router-link></small>
+  <footer class="border-top py-5 mt-5 bg-light">
+    <div class="container">
+      <div class="row g-4">
+        <!-- Sitemap -->
+        <div class="col-md-4">
+          <h5 class="fw-bold mb-3">Sitemap</h5>
+          <ul class="list-unstyled small mb-0">
+            <li v-for="(link,i) in pages.nav" :key="i" class="mb-1">
+              <router-link class="text-decoration-none text-dark" :to="toRoute(link.to)">
+                {{ link.label }}
+              </router-link>
+            </li>
+          </ul>
         </div>
-      </footer>
-    </script>
+
+        <!-- Contact -->
+        <div class="col-md-4">
+          <h5 class="fw-bold mb-3">Contact</h5>
+          <p class="mb-1"><strong>Address:</strong> {{ pages.contact?.address }}</p>
+          <p class="mb-1"><strong>Phone:</strong> {{ pages.contact?.phone }}</p>
+          <p class="mb-1"><strong>Email:</strong>
+            <a :href="'mailto:'+pages.contact?.email" class="text-decoration-none">
+              {{ pages.contact?.email }}
+            </a>
+          </p>
+          <p class="mb-0" v-if="pages.contact?.mapUrl">
+            <a :href="pages.contact.mapUrl" target="_blank" rel="noopener" class="small text-decoration-none">
+              View on Google Maps
+            </a>
+          </p>
+        </div>
+
+        <!-- Legal -->
+        <div class="col-md-4 text-md-end">
+          <h5 class="fw-bold mb-3">{{ pages.brand?.name }}</h5>
+          <small class="d-block">&copy; <span>{{ year }}</span> {{ pages.brand?.legalName }}</small>
+          <small class="text-muted">All rights reserved.</small>
+        </div>
+      </div>
+    </div>
+  </footer>
+</script>
 
     <script type="text/x-template" id="tmpl-home">
       <section class="py-4">
+  <!-- Services Carousel -->
+  <div id="servicesCarousel" class="carousel slide mb-5" data-bs-ride="carousel" data-bs-interval="4000">
+    <div class="carousel-inner">
+      <div class="carousel-item" v-for="(item,i) in allServices" :class="{active: i===0}" :key="i">
+        <img :src="asset(item.src)" class="d-block w-100 rounded" :alt="item.title" style="max-height:480px; object-fit:cover;">
+        <div class="carousel-caption bg-dark bg-opacity-50 rounded py-2 px-3">
+          <h5 class="fw-bold">{{ item.title }}</h5>
+          <p class="mb-0 small">{{ item.copy }}</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#servicesCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#servicesCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+
         <div class="text-center py-4">
           <img v-if="pages.brand?.logo" :src="asset(pages.brand.logo)" alt="Logo" class="mb-3" style="max-height:72px">
           <h1 class="display-5 fw-bold">{{ hero.title }}</h1>
@@ -82,12 +138,114 @@
           <p class="text-muted mb-3">Talk to us about your next campaign or recurring business mail.</p>
           <router-link to="/contact" class="btn btn-primary">Contact Us</router-link>
         </div>
+        <div class="container">
+          <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+          <div class="accordion" id="faqAccordion">
+
+            <!-- 1 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  What services does Mailmasters offer?
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  We provide full-service printing, mailing, and fulfillment solutions — including direct mail campaigns, address verification, variable data printing, and custom design services for businesses across New Mexico.
+                </div>
+              </div>
+            </div>
+
+            <!-- 2 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Can you help design my mail pieces or print files?
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Absolutely! Our in-house design team can create or clean up your artwork to make sure it meets USPS guidelines and looks professional in print.
+                </div>
+              </div>
+            </div>
+
+            <!-- 3 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  What areas do you serve?
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  We’re based in Albuquerque, NM and proudly serve clients throughout the Southwest — including Santa Fe, Rio Rancho, and surrounding communities. We can also mail nationwide through our USPS partner network.
+                </div>
+              </div>
+            </div>
+
+            <!-- 4 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  How do I get a quote?
+                </button>
+              </h2>
+              <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  You can request a quote through our <a href="#contact" class="text-decoration-none fw-bold">contact form</a> or by calling us directly. Just share your print size, quantity, and mail list details — we’ll handle the rest.
+                </div>
+              </div>
+            </div>
+
+            <!-- 5 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                  Do you handle bulk mail and Every Door Direct Mail (EDDM)?
+                </button>
+              </h2>
+              <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Yes! We specialize in bulk mail and EDDM. We can target specific ZIP codes or customer segments to maximize your reach while minimizing postage costs.
+                </div>
+              </div>
+            </div>
+
+            <!-- 6 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingSix">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                  How fast can you turn around a job?
+                </button>
+              </h2>
+              <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Standard turnaround is 3–5 business days for most jobs, but we can often expedite production for urgent projects. Let us know your deadline and we’ll make it happen.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </section>
     </script>
 
     <script type="text/x-template" id="tmpl-services">
       <section>
-        <h1>Services</h1>
+        <h1>{{ heading }}</h1>
         <p class="text-muted">Practical solutions for organizations that mail at volume.</p>
         <div class="row g-4 mt-1">
           <div v-for="(s, i) in items" :key="i" class="col-md-6">
@@ -131,7 +289,7 @@
         </div>
       </section>
     </script>
-
+   
     <script type="text/x-template" id="tmpl-contact">
       <section>
         <h1>Contact</h1>
@@ -184,116 +342,22 @@
     </script>
 
     <!-- Vue + Router + Bootstrap JS -->
+    <script src="./js/helpers.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
     <script src="https://unpkg.com/vue-router@4/dist/vue-router.global.prod.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Inject pages data (global) -->
-    <script src="./js/pagesData.js"></script>
+    
 
     <!-- App bootstrap -->
-    <script>
-    (function(){
-      function toRoute(raw){
-        if(!raw) return '/';
-        if(/^#\//.test(raw)) return raw.replace(/^#/, '');
-        if(/^\//.test(raw)) return raw;
-        if(/about\.html$/i.test(raw)) return '/about';
-        if(/services\.html$/i.test(raw)) return '/services';
-        if(/contact\.html$/i.test(raw)) return '/contact';
-        return raw.startsWith('/') ? raw : ('/' + raw.replace(/^\#?\/?/, ''));
-      }
-      function asset(p){
-        if(!p) return '';
-        if(/^https?:\/\//.test(p)) return p;
-        // normalize leading ./ or /
-        let clean = (''+p).replace(/^[./]+/, '');
-        // Handle absolute nuxt-style '/images/...'
-        if (clean.startsWith('images/')) return './assets/public/public/' + clean;
-        // If already 'public/...'
-        if (clean.startsWith('public/')) return './assets/' + clean;
-        // If already 'assets/...'
-        if (clean.startsWith('assets/')) return './' + clean;
-        // Fallback: try mapping into public/public
-        return './assets/public/public/' + clean;
-      }
-
-      const NavBar = { template: document.getElementById('tmpl-nav').innerHTML, data: ()=>({ pages: window.pages }), methods:{ toRoute } };
-      const SiteFooter = { template: document.getElementById('tmpl-footer').innerHTML, data: ()=>({ pages: window.pages, year: new Date().getFullYear() }) };
-
-      const Home = { template: document.getElementById('tmpl-home').innerHTML,
-        data(){ return { pages: window.pages }; },
-        computed:{
-          hero(){ return (this.pages.home && this.pages.home.hero) || {}; },
-          highlights(){ return (this.pages.home && Array.isArray(this.pages.home.highlights)) ? this.pages.home.highlights : []; }
-        },
-        methods:{ toRoute, asset }
-      };
-
-      const Services = { template: document.getElementById('tmpl-services').innerHTML,
-        data(){ return { pages: window.pages }; },
-        computed:{ items(){ return (this.pages.services && Array.isArray(this.pages.services.items)) ? this.pages.services.items : []; } },
-        methods:{ asset }
-      };
-
-      const About = { template: document.getElementById('tmpl-about').innerHTML,
-        data(){ return { pages: window.pages }; },
-        computed:{ about(){ return this.pages.about || {}; } }
-      };
-
-      const Contact = { 
-  template: document.getElementById('tmpl-contact').innerHTML,
-  data(){ return { pages: window.pages }; },
-  computed:{ 
-    contact(){ return this.pages.contact || {}; }, 
-    hours(){ return this.pages.hours || []; } 
-  },
-  methods:{
-    sendEmail(e){
-      e && e.preventDefault && e.preventDefault();
-      const form = e.target;
-      const name = form.querySelector('[name="name"]').value || '';
-      const email = form.querySelector('[name="email"]').value || '';
-      const message = form.querySelector('[name="message"]').value || '';
-      const to = (this.contact && this.contact.email) || 'info@mailmasterssw.com';
-      const subject = encodeURIComponent('Website inquiry');
-      const body = encodeURIComponent(`Name: ${name}
-Email: ${email}
-
-${message}`);
-      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-    },
-    tryAlt(ev, src){
-      const el = ev.target;
-      if (el && !el.dataset.altTried){
-        el.dataset.altTried = '1';
-        let p = (''+src).replace(/^[./]+/, '').replace(/^images\//,'assets/public/images/');
-        if (!p.startsWith('assets/')) p = 'assets/public/images/' + p;
-        el.src = './' + p.replace('assets/public/images/', 'assets/public/public/images/');
-      }
-    }
-  }
-};
-
-      const NotFound = { template: document.getElementById('tmpl-notfound').innerHTML };
-
-      const router = VueRouter.createRouter({
-        history: VueRouter.createWebHashHistory(),
-        routes: [
-          { path: '/', component: Home },
-          { path: '/about', component: About },
-          { path: '/services', component: Services },
-          { path: '/contact', component: Contact },
-          { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound }
-        ]
-      });
-
-      const app = Vue.createApp({});
-      app.component('nav-bar', NavBar);
-      app.component('site-footer', SiteFooter);
-      app.use(router);
-      app.mount('#app');
-    })();
-    </script>
-  </body>
+<script src="./js/pagesData.js"></script>
+<script src="./js/components/NavBar.js"></script>
+<script src="./js/components/SiteFooter.js"></script>
+<script src="./js/components/Home.js"></script>
+<script src="./js/components/ServicesPrinting.js"></script>
+<script src="./js/components/ServicesMailing.js"></script>
+<script src="./js/components/About.js"></script>
+<script src="./js/components/Contact.js"></script>
+<script src="./js/components/NotFound.js"></script>
+<script src="./js/app.js"></script>
+</body>
 </html>

@@ -14,8 +14,12 @@ window.pages = {
       "to": "/about"
     },
     {
-      "label": "Services",
-      "to": "/services"
+      "label": "Printing",
+      "to": "/printing"
+    },
+    {
+      "label": "Mailing",
+      "to": "/mailing"
     },
     {
       "label": "Contact",
@@ -27,12 +31,12 @@ window.pages = {
       "title": "Fast, Reliable Printing Mailing & Shipping",
       "subtitle": "Commercial mailing experts, 50 years in the industry. The mail process is always changing... lets us help",
       "ctaPrimary": {
-        "label": "View Services",
-        "to": "/services"
+        "label": "View Mailing Services",
+        "to": "/Mailing"
       },
       "ctaSecondary": {
-        "label": "Contact Us",
-        "to": "/contact"
+        "label": "View Printing Services",
+        "to": "/Printing"
       },
       "image": "/images/mailmasters-smooth.png"
     },
@@ -65,35 +69,6 @@ window.pages = {
       }
     ]
   },
-  "services": {
-    "items": [
-      {
-        "src": "/images/business-printer.jpg",
-        "title": "Business Printing",
-        "copy": "Printing services include B/W, color, and variable data"
-      },
-      {
-        "src": "/images/postage-system.jpg",
-        "title": "Business Mailing",
-        "copy": "Let us handle all of your mail from posting to delivery at USPS."
-      },
-      /*{
-        "src": "/images/sorter-line.jpg",
-        "title": "Mail Sorting & Addressing",
-        "copy": "Automation-friendly sorting and addressing to keep costs low."
-      },*/
-      {
-        "src": "/images/production-printer.jpg",
-        "title": "Address Printing",
-        "copy": "Addressing with high-speed technology"
-      },
-      {
-        "src": "/images/tabletop-inserter.jpg",
-        "title": "Mail Inserting",
-        "copy": "Automated inserting, collates, matches, seals—accurate, secure, ready for postage."
-      }
-    ]
-  },
   "contact": {
     "email":"info@mailmasterssw.com", "address": "2704 Girard Blvd NE, Albuquerque, NM 87107",
     "phone": "(505) 433-4510",
@@ -110,4 +85,113 @@ window.pages = {
       "h": "Closed"
     }
   ]
+,
+  "servicesPrinting": {
+    "items": [
+  {
+    "title": "Postcards",
+        "src": "/images/services/printing/postcards.png",
+    "copy": "Standard and oversized postcards for promos and mailers."
+  },
+  {
+    "title": "Brochures",
+        "src": "/images/services/printing/brochures.png",
+    "copy": "Tri‑fold, half‑fold, z‑fold and custom folds."
+  },
+  {
+    "title": "Booklets / Notepads",
+        "src": "/images/services/printing/booklets-and-notepads.png",
+    "copy": "Saddle‑stitch booklets, catalogs, notepads."
+  },
+  {
+    "title": "Calendars",
+        "src": "/images/services/printing/calendars.png",
+    "copy": "Wall and desk calendars, spiral or saddle‑stitch."
+  },
+  {
+    "title": "Flyers",
+        "src": "/images/services/printing/flyers.png",
+    "copy": "One‑sheets for events, promos, handouts."
+  },
+  {
+    "title": "Rack cards",
+        "src": "/images/services/printing/rack-cards.png",
+    "copy": "4x9 rack cards for displays and tourism spots."
+  },
+  {
+    "title": "Envelopes",
+        "src": "/images/services/printing/envelopes.png",
+    "copy": "Printed envelopes in common sizes with windows."
+  },
+  {
+    "title": "Forms",
+        "src": "/images/services/printing/forms.png",
+    "copy": "Carbonless (NCR) and standard business forms."
+  },
+  {
+    "title": "Menus",
+        "src": "/images/services/printing/menus.png",
+    "copy": "Durable, wipeable, or premium laminated menus."
+  },
+  {
+    "title": "Sell sheets",
+        "src": "/images/services/printing/sell-sheets.png",
+    "copy": "Product sell sheets with specs and pricing."
+  },
+  {
+    "title": "Table tents",
+        "src": "/images/services/printing/table-tents.png",
+    "copy": "Counter/restaurant table tents (optional)."
+  }
+]
+  },
+  "servicesMailing": {
+    "items": [
+  {
+    "title": "EDDM",
+        "src": "/images/services/mailing/eddm.png",
+    "copy": "Every Door Direct Mail: blanket neighborhoods cost‑effectively."
+  },
+  {
+    "title": "Direct mail",
+        "src": "/images/services/mailing/direct-mail.png",
+    "copy": "Addressed mailings for customers, donors, voters, etc."
+  },
+  {
+    "title": "Dynamic mail",
+        "src": "/images/services/mailing/dynamic-mail.png",
+    "copy": "Triggered mail from events or CRM actions."
+  },
+  {
+    "title": "Variable data",
+        "src": "/images/services/mailing/variable-data.png",
+    "copy": "Personalize text, images, and offers per recipient."
+  },
+  {
+    "title": "Mailing lists",
+        "src": "/images/services/mailing/mailing-lists.png",
+    "copy": "Acquire or use your lists; segmentation & dedupe."
+  },
+  {
+    "title": "NCOA Certification",
+        "src": "/images/services/mailing/ncoa-certification.png",
+    "copy": "Address hygiene with USPS NCOA processing."
+  },
+  {
+    "title": "Targeted mailing",
+        "src": "/images/services/mailing/targeted-mailing.png",
+    "copy": "Audience targeting by geo, demo, and behavior."
+  },
+  {
+    "title": "List cleanup / updates",
+        "src": "/images/services/mailing/list-cleanup-and-updates.png",
+    "copy": "De‑dupe, CASS, DPV, and list maintenance."
+  },
+  {
+    "title": "Political campaign mail",
+        "src": "/images/services/mailing/political-campaign-mail.png",
+    "copy": "Compliance‑aware political and advocacy mail."
+  }
+]
+  }
 };
