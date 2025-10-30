@@ -33,8 +33,7 @@
           { path: '/', component: window.Home },
           { path: '/about', component: window.About },
                     { path: '/contact', component: window.Contact },
-          { path: '/:pathMatch(.*)*', name: 'NotFound', component: window.NotFound }
-        ,
+          { path: '/:pathMatch(.*)*', name: 'NotFound', component: window.NotFound },
           { path: '/printing', component: window.ServicesPrinting },
           { path: '/mailing', component: window.ServicesMailing }]
       });
