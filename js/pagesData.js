@@ -158,6 +158,11 @@ window.pages = {
     "copy": "Addressed mailings for customers, donors, voters, etc."
   },
   {
+    "title": "Mailroom Management",
+        "src": "/images/services/mailing/mailroom-management.png",
+    "copy": "Efficient mail sorting, smart metering, and expert USPS guidance to save time and reduce postage costs."
+  },
+  {
     "title": "Dynamic mail",
         "src": "/images/services/mailing/dynamic-mail.png",
     "copy": "Triggered mail from events or CRM actions."
