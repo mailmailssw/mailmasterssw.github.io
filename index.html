@@ -291,47 +291,140 @@
     </script>
    
     <script type="text/x-template" id="tmpl-contact">
-      <section>
-        <h1>Contact</h1>
-        <div class="row g-4 mt-1">
-          <div class="col-lg-7">
-            <p class="text-muted">Send us a message and we’ll get back shortly.</p>
-            <form class="mt-3" onsubmit="return false;" @submit="sendEmail">
-              <div class="mb-3">
-                <label class="form-label">Name</label>
-                <input name="name" class="form-control" required>
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Email</label>
-                <input name="email" type="email" class="form-control" required>
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Message</label>
-                <textarea name="message" rows="5" class="form-control" required></textarea>
-              </div>
-              <button class="btn btn-primary" type="submit">Send</button>
-            </form>
+  <section>
+    <h1>Request a Quote</h1>
+    <div class="row g-4 mt-1">
+      <div class="col-lg-7">
+        <p class="text-muted">Tell us a little about your mailing project and we’ll follow up with pricing and options.</p>
+
+        <form class="mt-3" @submit.prevent="submitForm">
+          <div class="row g-3">
+          
+          <div class="col-md-12">
+            <p class="text-muted">
+              Please include your email so we can follow up with your quote.
+            </p>
           </div>
-          <div class="col-lg-5">
-            <div class="border rounded p-3 h-100">
-              <h2 class="h5 mb-3">Details</h2>
-              <p class="mb-1" v-if="contact.address"><strong>Address:</strong> {{ contact.address }}</p>
-              <p class="mb-1" v-if="contact.phone"><strong>Phone:</strong> {{ contact.phone }}</p>
-              <p class="mb-3" v-if="contact.email"><strong>Email:</strong> <a :href="'mailto:'+contact.email">{{ contact.email }}</a></p>
-              <h3 class="h6" v-if="(hours||[]).length">Hours</h3>
-              <ul class="list-unstyled small mb-0">
-                <li v-for="(row,i) in (hours || [])" :key="'h'+i">
-                  <strong>{{ row.d }}:</strong> {{ row.h }}
-                </li>
-              </ul>
-              <div class="mt-3" v-if="contact.mapUrl">
-                <a class="btn btn-outline-secondary btn-sm" :href="contact.mapUrl" target="_blank" rel="noopener">Open in Maps</a>
-              </div>
+          
+           <div class="col-md-6">
+            <label class="form-label">Email</label>
+            <input v-model="form.email" type="email" class="form-control" required>
+          </div>
+
+          <div class="col-md-6">
+  <label class="form-label">Phone</label>
+  <input
+    v-model="form.phone"
+    type="text"
+    class="form-control"
+    inputmode="numeric"
+    maxlength="14"
+    placeholder="(505) 555-1234"
+    @input="sanitizePhone"
+    required
+  >
+</div>
+
+            <div class="col-12">
+              <label class="form-label">Briefly describe your project</label>
+              <textarea v-model="form.projectDescription" rows="4" class="form-control" required></textarea>
             </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Quantity</label>
+              <input v-model="form.quantity" type="number" class="form-control" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Letter size</label>
+              <select v-model="form.letterSize" class="form-select" required>
+                <option disabled value="">Select one</option>
+                <option>8.5 x 11</option>
+                <option>8.5 x 14</option>
+                <option>Custom</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Simplex or duplex</label>
+              <select v-model="form.printType" class="form-select" required>
+                <option disabled value="">Select one</option>
+                <option>Simplex</option>
+                <option>Duplex</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Additional pieces</label>
+              <select v-model="form.additionalPieces" class="form-select">
+                <option disabled value="">Select one</option>
+                <option>None</option>
+                <option>1 Insert</option>
+                <option>2 Inserts</option>
+                <option>3+ Inserts</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Return Envelope</label>
+              <select v-model="form.returnEnvelope" class="form-select" required>
+                <option disabled value="">Select one</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Envelope type</label>
+              <select v-model="form.carrierEnvelope" class="form-select" required>
+                <option disabled value="">Select one</option>
+                <option>Window Envelope</option>
+                <option>Regular No. 10</option>
+                <option>Card</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Size</label>
+              <select v-model="form.mailPieceSize" class="form-select" required>
+                <option disabled value="">Select one</option>
+                <option>#10</option>
+                <option>6 x 9</option>
+                <option>9 x 12</option>
+                <option>Custom</option>
+              </select>
+            </div>
+
+            <div class="col-12">
+              <button class="btn btn-primary" type="submit">
+                Submit Quote Request
+              </button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="border rounded p-3 h-100">
+          <h2 class="h5 mb-3">Details</h2>
+          <p class="mb-1" v-if="contact.address"><strong>Address:</strong> {{ contact.address }}</p>
+          <p class="mb-1" v-if="contact.phone"><strong>Phone:</strong> {{ contact.phone }}</p>
+          <p class="mb-3" v-if="contact.email"><strong>Email:</strong> <a :href="'mailto:'+contact.email">{{ contact.email }}</a></p>
+          <h3 class="h6" v-if="(hours||[]).length">Hours</h3>
+          <ul class="list-unstyled small mb-0">
+            <li v-for="(row,i) in (hours || [])" :key="'h'+i">
+              <strong>{{ row.d }}:</strong> {{ row.h }}
+            </li>
+          </ul>
+          <div class="mt-3" v-if="contact.mapUrl">
+            <a class="btn btn-outline-secondary btn-sm" :href="contact.mapUrl" target="_blank" rel="noopener">Open in Maps</a>
           </div>
         </div>
-      </section>
-    </script>
+      </div>
+    </div>
+  </section>
+</script>
 
     <script type="text/x-template" id="tmpl-notfound">
       <div class="text-center py-5">
@@ -359,5 +452,11 @@
 <script src="./js/components/Contact.js"></script>
 <script src="./js/components/NotFound.js"></script>
 <script src="./js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init({
+    publicKey: "Vsmb6qezHpzfYfh5I"
+  });
+</script>
 </body>
 </html>
