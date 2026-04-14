@@ -1,7 +1,7 @@
-window.pages = {
+const pages = {
   "brand": {
     "logo": "/images/mailmasters-icon.png",
-    "name": "Mail Masters SW",
+    "name": "Mail Masters of the South West",
     "legalName": "Mail Masters South West"
   },
   "nav": [
@@ -22,21 +22,21 @@ window.pages = {
       "to": "/mailing"
     },
     {
-      "label": "Contact",
+      "label": "Request a Quote",
       "to": "/contact"
     }
   ],
   "home": {
     "hero": {
-      "title": "Fast, Reliable Printing Mailing & Shipping",
-      "subtitle": "Commercial mailing experts, 50 years in the industry. The mail process is always changing... lets us help",
+      "title": "Direct Mail Services That Get Delivered Right",
+      "subtitle": "No job is too big or too small — we handle it all. Commercial mailing experts, 50 years in the industry. We help businesses with mailing, printing, and mailroom support, handling the details so your projects move efficiently from start to finish.",
       "ctaPrimary": {
         "label": "View Mailing Services",
-        "to": "/Mailing"
+        "to": "/mailing"
       },
       "ctaSecondary": {
         "label": "View Printing Services",
-        "to": "/Printing"
+        "to": "/printing"
       },
       "image": "/images/mailmasters-smooth.png"
     },
@@ -72,7 +72,6 @@ window.pages = {
   "contact": {
     "email":"info@mailmasterssw.com", "address": "2704 Girard Blvd NE, Albuquerque, NM 87107",
     "phone": "(505) 433-4510",
-    "email": "info@mailmasterssw.com",
     "mapUrl": "https://www.google.com/maps/search/?api=1&query=2704%20Girard%20Blvd%20NE%2C%20Albuquerque%2C%20NM%2087107"
   },
   "hours": [
@@ -149,7 +148,7 @@ window.pages = {
     "items": [
   {
     "title": "EDDM",
-        "src": "/images/services/mailing/eddm.png",
+        "src": "images/services/mailing/eddm.png",
     "copy": "Every Door Direct Mail: blanket neighborhoods cost‑effectively."
   },
   {

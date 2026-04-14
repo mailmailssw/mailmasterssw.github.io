@@ -6,20 +6,10 @@
     return '/' + String(raw || '').replace(/^\#?\/?/, '');
   }
 
-  function asset(p){
-    if(!p) return '';
-    if(/^https?:\/\//i.test(p)) return p;
-    // normalize
-    let clean = String(p).replace(/^(\.\/)+/, '').replace(/^\/+/, '');
-    // Map '/images/...'(or 'images/...') into /assets/public/public/images/...
-    if (clean.startsWith('images/')) return './assets/public/public/' + clean;
-    // Already a public/assets path
-    if (clean.startsWith('assets/')) return './' + clean;
-    if (clean.startsWith('public/')) return './assets/' + clean;
-    // Default: also map into public/public
-    return './assets/public/public/' + clean;
-  }
-
+  window.asset = function (p) {
+  if (!p) return "";
+  return "./assets/" + String(p).replace(/^\/+/, "");
+};
   function tryAlt(ev, src){
     if (ev && ev.target){
       ev.target.alt = 'Image unavailable';
