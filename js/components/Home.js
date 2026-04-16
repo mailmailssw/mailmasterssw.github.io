@@ -42,8 +42,8 @@ const Home = {
 
           <div class="row text-center g-4">
             <div class="col-md-4">
-              <router-link to="/mailing" class="feature-link">
-                <div class="feature-block">
+              <router-link to="/mailing" class="feature-link h-100">
+                <div class="feature-block h-100">
                   <div class="feature-icon">📬</div>
                   <h3>Mailing Services</h3>
                   <p>
@@ -54,8 +54,8 @@ const Home = {
             </div>
 
             <div class="col-md-4">
-              <router-link to="/printing" class="feature-link">
-                <div class="feature-block">
+              <router-link to="/printing" class="feature-link h-100">
+                <div class="feature-block h-100">
                   <div class="feature-icon">🖨️</div>
                   <h3>Printing Services</h3>
                   <p>
@@ -66,8 +66,8 @@ const Home = {
             </div>
 
             <div class="col-md-4">
-              <router-link to="/mailroom" class="feature-link">
-                <div class="feature-block">
+              <router-link to="/mailroom" class="feature-link h-100">
+                <div class="feature-block h-100">
                   <div class="feature-icon">📦</div>
                   <h3>Mailroom Management</h3>
                   <p>
