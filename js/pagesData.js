@@ -22,14 +22,18 @@ const pages = {
       "to": "/mailing"
     },
     {
+      "label": "Mailroom Management",
+      "to": "/mailroom"
+    },
+    {
       "label": "Request a Quote",
       "to": "/contact"
     }
   ],
   "home": {
     "hero": {
-      "title": "Direct Mail Services That Get Delivered Right",
-      "subtitle": "No job is too big or too small — we handle it all. Commercial mailing experts, 50 years in the industry. We help businesses with mailing, printing, and mailroom support, handling the details so your projects move efficiently from start to finish.",
+      "title": "Direct Mail Services That Actually Get Delivered Right",
+      "subtitle": "No job is too big or too small — we handle it all. Commercial mailing experts, 50 years in the industry.",
       "ctaPrimary": {
         "label": "View Mailing Services",
         "to": "/mailing"
@@ -157,11 +161,6 @@ const pages = {
     "copy": "Addressed mailings for customers, donors, voters, etc."
   },
   {
-    "title": "Mailroom Management",
-        "src": "/images/services/mailing/mailroom-management.png",
-    "copy": "Efficient mail sorting, smart metering, and expert USPS guidance to save time and reduce postage costs."
-  },
-  {
     "title": "Dynamic mail",
         "src": "/images/services/mailing/dynamic-mail.png",
     "copy": "Triggered mail from events or CRM actions."
@@ -197,5 +196,37 @@ const pages = {
     "copy": "Compliance‑aware political and advocacy mail."
   }
 ]
-  }
+  },
+  "servicesMailroom": {
+  title: "Mailroom Management & Support",
+  intro: "We help businesses manage internal mail operations more efficiently, from sorting and metering to workflow support and USPS best-practice guidance.",
+  cta: {
+    title: "Need help managing your mailroom?",
+    text: "Tell us about your setup and we’ll help you find the right approach.",
+    button: "Request a Quote",
+    to: "/contact"
+  },
+  items: [
+    {
+      title: "Mail Sorting & Preparation",
+      copy: "Organized handling of outgoing mail to keep daily operations moving, and receive a postage discount for pre-sorting your mail.",
+      src: "/images/services/mailroom/mailroom-sorting.png"
+    },
+    {
+      title: "Metering & Postage Handling",
+      copy: "Support for postage processing and mail preparation.",
+      src: "/images/services/mailroom/mailroom-metering.jpg"
+    },
+    {
+      title: "Workflow Support",
+      copy: "Better structure for recurring mail tasks and internal handling.",
+      src: "/images/services/mailroom/mailroom-workflow.png"
+    },
+    {
+      title: "USPS Best-Practice Guidance",
+      copy: "Practical help staying aligned with mailing requirements and processes.",
+      src: "/images/services/mailroom/mailroom-usps.png"
+    }
+  ]
+}
 };

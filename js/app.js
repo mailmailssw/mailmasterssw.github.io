@@ -10,6 +10,7 @@
           { path: '/contact', component: Contact },
           { path: '/printing', component: ServicesPrinting },
           { path: '/mailing', component: ServicesMailing },
+          { path: '/mailroom', component: ServicesMailroom },
           { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound }]
       });
 
