@@ -1,6 +1,6 @@
 const ServicesPrinting = { 
         template: ServicesTemplate,
-        data(){ return { pages: pages, heading: 'Printing Services' }; },
-        computed:{ items(){ return (this.pages.servicesPrinting && Array.isArray(this.pages.servicesPrinting.items)) ? this.pages.servicesPrinting.items : []; } },
+        data(){ return {  page: pages.servicesPrinting, heading: 'Printing Services' }; },
+        computed:{ items(){ return (this.page && Array.isArray(this.page.items)) ? this.page.items : []; } },
         methods:{ asset }
       };

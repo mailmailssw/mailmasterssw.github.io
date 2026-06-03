@@ -1,7 +1,6 @@
 const SiteFooter = {
   data: () => ({
     pages: pages,
-    year: 2016
   }),
   methods: { toRoute },
   template: `
@@ -40,7 +39,7 @@ const SiteFooter = {
         <!-- Legal -->
         <div class="col-md-4 text-md-end">
           <h5 class="fw-bold mb-3">{{ pages.brand?.name }}</h5>
-          <small class="d-block">&copy; <span>{{ year }}</span> {{ pages.brand?.legalName }}</small>
+          <small class="d-block">&copy; <span>2016–2026</span> {{ pages.brand?.legalName }}</small>
           <small class="text-muted">All rights reserved.</small>
         </div>
       </div>

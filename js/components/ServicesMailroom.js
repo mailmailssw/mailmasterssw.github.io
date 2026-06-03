@@ -1,6 +1,6 @@
 const ServicesMailroom = { 
         template: ServicesTemplate,
-        data(){ return { pages: pages, heading: 'Mailroom Services' }; },
-        computed:{ items(){ return (this.pages.servicesMailroom && Array.isArray(this.pages.servicesMailroom.items)) ? this.pages.servicesMailroom.items : []; } },
+        data(){ return { page: pages.servicesMailroom, heading: 'Mailroom Services' }; },
+        computed:{ items(){ return (this.page && Array.isArray(this.page.items)) ? this.page.items : []; } },
         methods:{ asset }
       };

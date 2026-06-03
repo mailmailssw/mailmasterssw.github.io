@@ -1,8 +1,8 @@
 const pages = {
   "brand": {
     "logo": "/images/mailmasters-icon.png",
-    "name": "Mail Masters of the South West",
-    "legalName": "Mail Masters South West"
+    "name": "Mail Masters of the Southwest",
+    "legalName": "Mail Masters of the Southwest"
   },
   "nav": [
     {
@@ -90,6 +90,8 @@ const pages = {
   ]
 ,
   "servicesPrinting": {
+    "title":"Printing Services",
+    "intro":"We provide printing for direct mail, promotions, and everyday business communication, with materials built to support the full mailing process.",
     "items": [
   {
     "title": "Postcards",
@@ -149,6 +151,8 @@ const pages = {
 ]
   },
   "servicesMailing": {
+    "title":"Mailing Services",
+    "intro":"We help businesses manage direct mail projects from preparation to USPS delivery, with support for both simple jobs and larger campaigns.",
     "items": [
   {
     "title": "EDDM",

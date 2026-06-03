@@ -1,7 +1,7 @@
 const ServicesTemplate = `
       <div class="container-fluid">
-        <h1>{{ heading }}</h1>
-        <p class="text-muted">Practical solutions for organizations that mail at volume.</p>
+        <h1>{{ page.title }}</h1>
+        <p class="lead">{{ page.intro }}</p>
         <div class="row g-4 mt-1">
           <div v-for="(s, i) in items" :key="i" class="col-md-6">
             <div class="card h-100 shadow-sm">

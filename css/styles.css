@@ -251,3 +251,38 @@ footer {
     padding-right: 1rem !important;
   }
 }
+/* Mobile nav dropdown */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    background: #ffffff;
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    border: 1px solid var(--mm-border);
+    border-radius: 14px;
+    box-shadow: var(--mm-shadow-soft);
+  }
+
+  .navbar-nav {
+    gap: 0.35rem;
+  }
+
+  .navbar .nav-link {
+    color: var(--mm-text) !important;
+    display: block;
+    padding: 0.7rem 0.85rem !important;
+  }
+
+  .navbar-toggler {
+    border: 1px solid var(--mm-border);
+    border-radius: 10px;
+    padding: 0.45rem 0.6rem;
+  }
+
+  .navbar-toggler:focus {
+    box-shadow: 0 0 0 0.18rem rgba(90, 51, 181, 0.15);
+  }
+
+  .navbar-toggler-icon {
+    filter: invert(1);
+  }
+}
