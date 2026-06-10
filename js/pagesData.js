@@ -43,8 +43,7 @@ const pages = {
         "to": "/printing"
       },
       "image": "/images/mailmasters-smooth.png"
-    },
-    "highlights": []
+    }
   },
   "about": {
     "tagline": "Founded in 2016. Albuquerque, New Mexico.",

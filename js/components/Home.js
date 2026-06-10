@@ -3,37 +3,18 @@ const Home = {
   computed:{
     allServices(){ const p=(this.pages.servicesPrinting?.items||[]); const m=(this.pages.servicesMailing?.items||[]); return [...m,...p]; },
     hero(){ return (this.pages.home && this.pages.home.hero) || {}; },
-    highlights(){ return (this.pages.home && Array.isArray(this.pages.home.highlights)) ? this.pages.home.highlights : []; }
-  },
+    },
   methods:{ toRoute, asset },
   template:`
       <div class="container-fluid py-4">
           <!-- header -->
           <div class="text-center py-4">
-          <img v-if="pages.brand?.logo" :src="asset(pages.brand.logo)" alt="Logo" class="mb-3" style="max-height:72px">
+          <img v-if="pages.brand?.logo" :src="asset(pages.brand.logo)" alt="Logo" class="mb-4 img-fluid" style="height:8em">
           <h1 class="display-5 fw-bold">{{ hero.title }}</h1>
           <p class="lead">{{ hero.subtitle }}</p>
         </div>
         
-        <div class="row g-4 mt-2">
-          <div v-for="(h, i) in highlights" :key="i" class="col-md-4">
-            <div class="border rounded p-3 h-100 text-center">
-              <div class="d-flex flex-column align-items-center gap-2">
-                <div class="card-icon" v-if="h.icon"><i :class="h.icon" aria-hidden="true"></i></div>
-                <div>
-                  <h3 class="display-4 fw-">{{ h.title }}</h3>
-                  <p class="lead" v-if="h.desc">{{ h.desc }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div class="bg-body-tertiary rounded mb-5 mt-2 text-center">
-          <h2 class="h4 mb-2">Ready to streamline your mail?</h2>
-          <p class="text-muted mb-3">Talk to us about your next campaign or recurring business mail.</p>
-          <router-link to="/contact" class="btn btn-primary btn-lg">Request a Quote</router-link>
-        </div>
         
         
         <!-- featured blocks -->
@@ -77,6 +58,13 @@ const Home = {
               </router-link>
             </div>
           </div>
+        </div>
+        
+        
+        <div class="bg-body-tertiary rounded mb-5 mt-2 text-center">
+          <h2 class="h4 mb-2">Ready to streamline your mail?</h2>
+          <p class="text-muted mb-3">Talk to us about your next campaign or recurring business mail.</p>
+          <router-link to="/contact" class="btn btn-primary btn-lg">Request a Quote</router-link>
         </div>
         
         <!-- featured section -->
