@@ -169,16 +169,17 @@ const Contact = {
   },
   template: ` 
     <div class="container-fluid">
+      <p class="eyebrow">Start a Project</p>
       <h1>Request a Quote</h1>
+      <p class="lead quote-lead">Tell us what you are sending, how much you need, and any project details you already know. We will follow up with pricing, options, and next steps.</p>
       <div class="row g-4 mt-1">
         <div class="col-lg-7">
-          <p class="text-muted">Tell us a little about your mailing project and we’ll follow up with pricing and options.</p>
           <form class="mt-3" @submit.prevent="submitForm">
             <div class="row g-3">
               <div class="col-md-12">
-                <p class="text-muted">
-                  Please include your email so we can follow up with your quote.
-                </p>
+                <div class="form-note">
+                  Please include the best email and phone number so we can follow up quickly.
+                </div>
               </div>
               <div class="col-md-6">
                 <label class="form-label">Email</label>
@@ -256,10 +257,10 @@ const Contact = {
               <select v-model="form.carrierEnvelope" class="form-select" required>
                 <option disabled value="">Select one</option>
                 <option>Window Envelope</option>
-                <option>Regular number 1010</option>
-                <option>4 x 6(standard postcard)</option>
-                <option>4.25 x 5.5(compact postcard)</option>
-                <option>5 x 7(premium postcard)</option>
+                <option>Regular #10</option>
+                <option>4 x 6 standard postcard</option>
+                <option>4.25 x 5.5 compact postcard</option>
+                <option>5 x 7 premium postcard</option>
                 <option>Custom Envelope Size</option>
               </select>
             </div>
@@ -300,19 +301,30 @@ const Contact = {
       </div>
 
       <div class="col-lg-5">
-        <div class="border rounded p-3 h-100">
-          <h2 class="h5 mb-3">Details</h2>
-          <p class="mb-1" v-if="contact.address"><strong>Address:</strong> {{ contact.address }}</p>
-          <p class="mb-1" v-if="contact.phone"><strong>Phone:</strong> {{ contact.phone }}</p>
-          <p class="mb-3" v-if="contact.email"><strong>Email:</strong> <a :href="'mailto:'+contact.email">{{ contact.email }}</a></p>
-          <h3 class="h6" v-if="(hours||[]).length">Hours</h3>
-          <ul class="list-unstyled small mb-0">
-            <li v-for="(row,i) in (hours || [])" :key="'h'+i">
-              <strong>{{ row.d }}:</strong> {{ row.h }}
-            </li>
-          </ul>
-          <div class="mt-3" v-if="contact.mapUrl">
-            <a class="btn btn-outline-secondary btn-sm" :href="contact.mapUrl" target="_blank" rel="noopener">Open in Maps</a>
+        <div class="quote-sidebar h-100">
+          <div class="sidebar-card mb-3">
+            <h2 class="h5 mb-3">Project Support</h2>
+            <ul class="clean-list mb-0">
+              <li>Printing and mailing handled together</li>
+              <li>Help with direct mail, EDDM, and recurring mail</li>
+              <li>USPS-focused preparation and processing support</li>
+              <li>Local Albuquerque team you can call directly</li>
+            </ul>
+          </div>
+          <div class="sidebar-card">
+            <h2 class="h5 mb-3">Contact Details</h2>
+            <p class="mb-1" v-if="contact.address"><strong>Address:</strong> {{ contact.address }}</p>
+            <p class="mb-1" v-if="contact.phone"><strong>Phone:</strong> {{ contact.phone }}</p>
+            <p class="mb-3" v-if="contact.email"><strong>Email:</strong> <a :href="'mailto:'+contact.email">{{ contact.email }}</a></p>
+            <h3 class="h6" v-if="(hours||[]).length">Hours</h3>
+            <ul class="list-unstyled small mb-0">
+              <li v-for="(row,i) in (hours || [])" :key="'h'+i">
+                <strong>{{ row.d }}:</strong> {{ row.h }}
+              </li>
+            </ul>
+            <div class="mt-3" v-if="contact.mapUrl">
+              <a class="btn btn-outline-secondary btn-sm" :href="contact.mapUrl" target="_blank" rel="noopener">Open in Maps</a>
+            </div>
           </div>
         </div>
       </div>

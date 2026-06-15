@@ -286,3 +286,109 @@ footer {
     filter: invert(1);
   }
 }
+/* POLISH PASS */
+.page-section {
+  padding-top: 2.75rem;
+  padding-bottom: 2.75rem;
+}
+
+.eyebrow {
+  color: var(--mm-purple);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.65rem;
+}
+
+.hero-actions .btn {
+  min-width: 190px;
+}
+
+.highlight-card,
+.info-card,
+.sidebar-card {
+  background: #fff;
+  border: 1px solid var(--mm-border);
+  border-radius: 16px;
+  box-shadow: var(--mm-shadow-soft);
+  padding: 1.5rem;
+}
+
+.compact-card {
+  display: inline-block;
+  width: 100%;
+}
+
+.clean-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.clean-list li {
+  position: relative;
+  padding-left: 1.55rem;
+  margin-bottom: 0.8rem;
+  color: var(--mm-text);
+}
+
+.clean-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--mm-purple);
+  font-weight: 900;
+}
+
+.quote-lead {
+  max-width: 820px;
+}
+
+.form-note {
+  background: var(--mm-purple-soft);
+  border: 1px solid #e1d7fb;
+  border-radius: 12px;
+  color: #4f4f5a;
+  padding: 0.9rem 1rem;
+}
+
+.quote-sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  border: 1px solid var(--mm-border) !important;
+  border-radius: 16px !important;
+  overflow: hidden;
+}
+
+.card-img-top {
+  min-height: 220px;
+  background: #f3f4f8;
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+@media (max-width: 767px) {
+  #app {
+    margin: 0;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .container,
+  .container-fluid {
+    padding-left: 1.1rem !important;
+    padding-right: 1.1rem !important;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    margin-right: 0 !important;
+  }
+}

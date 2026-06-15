@@ -10,8 +10,13 @@ const Home = {
           <!-- header -->
           <div class="text-center py-4">
           <img v-if="pages.brand?.logo" :src="asset(pages.brand.logo)" alt="Logo" class="mb-4 img-fluid" style="height:8em">
+          <p class="eyebrow">Albuquerque Printing & Mailing</p>
           <h1 class="display-5 fw-bold">{{ hero.title }}</h1>
           <p class="lead">{{ hero.subtitle }}</p>
+          <div class="hero-actions mt-4">
+            <router-link :to="toRoute(hero.ctaPrimary?.to)" class="btn btn-primary btn-lg me-2 mb-2">{{ hero.ctaPrimary?.label || 'Request a Quote' }}</router-link>
+            <router-link :to="toRoute(hero.ctaSecondary?.to)" class="btn btn-outline-primary btn-lg mb-2">{{ hero.ctaSecondary?.label || 'View Services' }}</router-link>
+          </div>
         </div>
         
 
@@ -28,7 +33,7 @@ const Home = {
                   <div class="feature-icon">📬</div>
                   <h3>Mailing Services</h3>
                   <p>
-                    Direct mail campaigns, EDDM, bulk mail processing, and USPS handling.
+                    Direct mail campaigns, EDDM, bulk mail preparation, and USPS-focused support.
                   </p>
                 </div>
               </router-link>
@@ -52,7 +57,7 @@ const Home = {
                   <div class="feature-icon">📦</div>
                   <h3>Mailroom Management</h3>
                   <p>
-                    Sorting, metering, and consulting on best USPS practices.
+                    Mail sorting, postage handling, workflow support, and USPS best-practice guidance.
                   </p>
                 </div>
               </router-link>
@@ -194,7 +199,7 @@ const Home = {
             </router-link>
 
             <p class="cta-note mt-2">
-              No obligation — we’ll walk you through the options.
+              Local support — we’ll walk you through the options.
             </p>
           </div>
         </div>
