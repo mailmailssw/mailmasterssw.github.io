@@ -26,9 +26,9 @@ const Home = {
         <div class="container-fluid py-5">
           <h2 class="text-center mb-4">What We Do</h2>
 
-          <div class="row text-center g-4">
-            <div class="col-md-4">
-              <router-link to="/mailing" class="feature-link">
+          <div class="row text-center g-4 what-we-do-grid align-items-stretch">
+            <div class="col-md-4 d-flex">
+              <router-link to="/mailing" class="feature-link h-100 w-100">
                 <div class="feature-block">
                   <div class="feature-icon">📬</div>
                   <h3>Mailing Services</h3>
@@ -39,8 +39,8 @@ const Home = {
               </router-link>
             </div>
 
-            <div class="col-md-4">
-              <router-link to="/printing" class="feature-link">
+            <div class="col-md-4 d-flex">
+              <router-link to="/printing" class="feature-link h-100 w-100">
                 <div class="feature-block">
                   <div class="feature-icon">🖨️</div>
                   <h3>Printing Services</h3>
@@ -51,8 +51,8 @@ const Home = {
               </router-link>
             </div>
 
-            <div class="col-md-4">
-              <router-link to="/mailroom" class="feature-link">
+            <div class="col-md-4 d-flex">
+              <router-link to="/mailroom" class="feature-link h-100 w-100">
                 <div class="feature-block">
                   <div class="feature-icon">📦</div>
                   <h3>Mailroom Management</h3>
