@@ -4,10 +4,10 @@ const ServicesTemplate = `
         <p class="lead">{{ page.intro }}</p>
         <div class="row g-4 mt-1">
           <div v-for="(s, i) in items" :key="i" class="col-md-6">
-            <div class="card h-100 shadow-sm">
-              <img v-if="s.src" class="card-img-top" :src="asset(s.src)" :alt="s.title" style="object-fit:cover; max-height: 280px;" @error="tryAlt($event, s.src)">
+            <div class="card h-100 shadow-sm service-card">
+              <img v-if="s.src" class="card-img-top service-card-img" :src="asset(s.src)" :alt="s.title" style="object-fit:cover; max-height: 280px;" @error="tryAlt($event, s.src)">
               <div class="card-body">
-                <h5 class="mb-1">{{ s.title }}</h5>
+                <h5 class="mb-1 service-card-title">{{ s.title }}</h5>
                 <p class="mb-0" v-if="s.copy">{{ s.copy }}</p>
               </div>
             </div>

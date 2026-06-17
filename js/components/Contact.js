@@ -174,7 +174,7 @@ const Contact = {
       <p class="lead quote-lead">Tell us what you are sending, how much you need, and any project details you already know. We will follow up with pricing, options, and next steps.</p>
       <div class="row g-4 mt-1">
         <div class="col-lg-7">
-          <form class="mt-3" @submit.prevent="submitForm">
+          <form class="quote-form-card mt-3" @submit.prevent="submitForm">
             <div class="row g-3">
               <div class="col-md-12">
                 <div class="form-note">

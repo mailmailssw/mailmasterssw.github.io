@@ -9,7 +9,7 @@ const Home = {
       <div class="container-fluid py-4">
           <!-- header -->
           <div class="text-center py-4">
-          <img v-if="pages.brand?.logo" :src="asset(pages.brand.logo)" alt="Logo" class="mb-4 img-fluid" style="height:8em">
+          <img v-if="pages.brand?.logo" :src="asset(pages.brand.logo)" alt="Logo" class="mb-4 img-fluid home-logo">
           <p class="eyebrow">Albuquerque Printing & Mailing</p>
           <h1 class="display-5 fw-bold">{{ hero.title }}</h1>
           <p class="lead">{{ hero.subtitle }}</p>

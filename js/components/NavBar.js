@@ -4,7 +4,13 @@ const NavBar = {
     template:`
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-          <router-link class="navbar-brand" to="/">{{ pages.brand?.name || 'Mail Masters SW' }}</router-link>
+          <router-link class="navbar-brand mm-brand" to="/">
+            <img class="mm-brand-mark" src="./assets/images/mailmasters-mark.png" alt="" aria-hidden="true">
+            <span class="mm-brand-text">
+              <span class="mm-brand-main">Mail Masters</span>
+              <span class="mm-brand-sub">of the Southwest</span>
+            </span>
+          </router-link>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
             <span class="navbar-toggler-icon"></span>
           </button>

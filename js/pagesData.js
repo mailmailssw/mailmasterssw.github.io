@@ -1,6 +1,6 @@
 const pages = {
   brand: {
-    logo: "/images/mailmasters-icon.png",
+    logo: "/images/mailmasters-logo-new.png",
     name: "Mail Masters of the Southwest",
     legalName: "Mail Masters of the Southwest"
   },
@@ -18,7 +18,7 @@ const pages = {
       subtitle: "Commercial direct mail, business printing, sorting, metering, and USPS-focused support from a local Albuquerque team.",
       ctaPrimary: { label: "Request a Quote", to: "/contact" },
       ctaSecondary: { label: "Explore Mailing Services", to: "/mailing" },
-      image: "/images/mailmasters-smooth.png"
+      image: "/images/mailmasters-logo-new.png"
     }
   },
   about: {
